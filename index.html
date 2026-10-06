@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08070b" />
+
+    <!-- EDIT: Page title -->
+    <title>Steven ❤️ Marga — Our First Chapter</title>
+    <meta
+      name="description"
+      content="A little universe made especially for my Love — our first year together."
+    />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%99%A5%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         BACKGROUND LAYERS
+    ========================== -->
+
+    <div class="stars" aria-hidden="true"></div>
+    <div class="hearts-background" aria-hidden="true"></div>
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- =========================
+         MUSIC
+         EDIT: Replace the song below with your own
+    ========================== -->
+
+    <audio id="music" loop preload="auto">
+      <source
+        src="audio/Rico%20Blanco%20-%20Your%20Universe%20(Lyrics%20Letra).mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <!-- =========================
+         SITE NAVIGATION
+         (Appears once you enter the story)
+    ========================== -->
+
+    <nav class="site-nav hidden" id="siteNav">
+      <div class="nav-inner">
+        <a href="#home" class="nav-brand" data-nav>S <span>♥</span> M</a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home" data-nav>Home</a>
+          <a href="#story" data-nav>Our Story</a>
+          <a href="#videoMemory" data-nav>Video</a>
+          <a href="#memories" data-nav>Memories</a>
+          <a href="#letter" data-nav>Letter</a>
+          <a href="#final" data-nav>Finale</a>
+        </div>
+
+        <div class="nav-actions">
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- =========================
+         MUSIC ACTIVATION OVERLAY
+         (Shown only when browser autoplay is blocked)
+    ========================== -->
+
+    <div class="music-overlay" id="musicOverlay" aria-hidden="true">
+      <div class="music-overlay-content">
+        <p class="music-overlay-text">
+          Our story sounds better with music. ❤️
+        </p>
+
+        <button class="main-button" id="startMusicButton">
+          Start Our Story <span>❤️</span>
+        </button>
+
+        <button class="text-button" id="skipMusicButton">
+          Continue without music
+        </button>
+      </div>
+    </div>
+
+    <!-- =========================
+         FLOATING MUSIC CONTROL
+         (Play / pause / mute — appears after activation)
+    ========================== -->
+
+    <div class="music-control" id="musicControl" hidden>
+      <button
+        class="music-control-button"
+        id="musicButton"
+        aria-label="Play music"
+        aria-pressed="false"
+      >
+        <span id="musicIcon">🎵</span>
+        <span id="musicLabel">Music</span>
+      </button>
+
+      <button
+        class="music-control-button"
+        id="muteButton"
+        aria-label="Mute music"
+        aria-pressed="false"
+      >
+        <span id="muteIcon">🔊</span>
+      </button>
+    </div>
+
+    <!-- =========================
+         INTRO SCREEN (OPENING)
+         EDIT: Opening text below
+    ========================== -->
+
+    <div class="intro-screen" id="introScreen">
+      <!-- EDIT: Replace image/1.jpg with your opening photo -->
+      <div class="intro-bg" aria-hidden="true">
+        <img
+          src="image/11.jpg"
+          alt=""
+          onerror="this.style.display = 'none'"
+        />
+      </div>
+
+      <div class="intro-content">
+        <p class="tiny-label">OUR FIRST CHAPTER</p>
+
+        <h1>For My Love <span>❤️</span></h1>
+
+        <p>
+          One simple message.<br />
+          One unforgettable meeting.<br />
+          One beautiful year.
+        </p>
+
+        <button class="main-button" id="enterButton">
+          Begin Our Story <span>❤️</span>
+        </button>
+      </div>
+
+      <div class="intro-bottom">Steven <span>♥</span> Love</div>
+    </div>
+
+    <!-- =========================
+         MAIN WEBSITE
+    ========================== -->
+
+    <main id="mainContent" class="hidden">
+      <!-- ========== TIME WE'VE SHARED ========== -->
+
+      <section class="counter-section section" id="home">
+        <div class="container">
+          <p class="eyebrow reveal">TIME WE'VE SHARED</p>
+
+          <h2 class="reveal">
+            And somehow,
+            <br />
+            time keeps flying.
+          </h2>
+
+          <div class="counter-grid reveal">
+            <div class="counter-card">
+              <strong id="years">0</strong>
+              <span>Years</span>
+            </div>
+
+            <div class="counter-card">
+              <strong id="months">0</strong>
+              <span>Months</span>
+            </div>
+
+            <div class="counter-card">
+              <strong id="days">0</strong>
+              <span>Days</span>
+            </div>
+
+            <div class="counter-card">
+              <strong id="hours">0</strong>
+              <span>Hours</span>
+            </div>
+          </div>
+
+          <p class="counter-note reveal">
+            Since <span id="storyStartDisplay">our story began</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ========== OUR STORY ========== -->
+      <!-- =========================================
+           EDITABLE ANNIVERSARY CONTENT — TIMELINE
+           Text only. Edit the dates, titles and
+           descriptions below.
+      ========================================== -->
+
+      <section class="story-section section" id="story">
+        <div class="container">
+          <p class="eyebrow reveal">OUR STORY</p>
+
+          <h2 class="reveal">It started with a message.</h2>
+
+          <div class="timeline">
+            <div class="timeline-item reveal">
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-content">
+                <span class="timeline-date">October 6, 2025</span>
+
+                <h3>Where It All Began</h3>
+
+                <p>
+                  It all started with one simple message. I asked if you
+                  had duty that day... Never knowing that one little
+                  message would eventually lead me to you.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-content">
+                <span class="timeline-date">October 7, 2025</span>
+
+                <h3>Our First Meet</h3>
+
+                <p>
+                  The next day, we finally met at McDonald's Calumpit. It
+                  was a simple day, but somehow, it became the beginning
+                  of something I'll always treasure.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item timeline-special reveal">
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-content">
+                <span class="timeline-date">October 8, 2025</span>
+
+                <h3>The Little Things</h3>
+
+                <p>
+                  You gave me a coffee in a simple glass bottle, with the
+                  date you said yes written on it. It was such a simple
+                  thing... but somehow, it became one of the little
+                  memories I'll always treasure.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-content">
+                <span class="timeline-date">January 8, 2026</span>
+
+                <h3>Growing Together</h3>
+
+                <p>
+                  We had good days, difficult days, and everything in
+                  between. There were moments when things weren't perfect.
+                  But through it all, we stayed. We learned. We grew. And
+                  somehow, we became stronger together.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-dot"></div>
+
+              <div class="timeline-content">
+                <span class="timeline-date">October 8, 2026</span>
+
+                <h3>One Year With You</h3>
+
+                <p>
+                  One year ago, our story was just beginning. Today, I'm
+                  looking at everything we've shared and realizing how
+                  much a simple message changed my life. One year.
+                  Countless memories. And still, I choose you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== VIDEO MEMORY ========== -->
+      <!-- =========================================
+           EDITABLE ANNIVERSARY CONTENT — VIDEO
+           The video file already lives in the
+           video folder. Do not rename it.
+      ========================================== -->
+
+      <section class="video-section section" id="videoMemory">
+        <div class="container">
+          <p class="eyebrow reveal">VIDEO MEMORY</p>
+
+          <h2 class="reveal">Our Story in Motion</h2>
+
+          <p class="section-description reveal" style="--d: 0.15s">
+            Some memories are better experienced than explained.
+          </p>
+
+          <div class="video-frame reveal" id="videoFrame">
+            <video
+              id="storyVideo"
+              controls
+              playsinline
+              preload="metadata"
+              poster="image/14.jpg"
+            >
+              <source
+                src="video/8fdada98-b2c2-4d21-ad9e-1a06632b4678.mp4"
+                type="video/mp4"
+              />
+            </video>
+
+            <p class="video-fallback" id="videoFallback" hidden>
+              Your video is ready, but this browser could not load the
+              media file.
+            </p>
+          </div>
+
+          <div class="closing-lines reveal">
+            <p style="--d: 0.2s">Some moments pass by.</p>
+            <p style="--d: 0.7s">Some moments stay with us.</p>
+            <p class="closing-lines-final" style="--d: 1.2s">
+              I'm grateful I get to remember them with you, Love. ❤️
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== OUR MEMORIES ========== -->
+      <!-- =========================================
+           EDITABLE ANNIVERSARY CONTENT — GALLERY
+           Replace image/1.jpg ... image/5.jpg with
+           your own photos. Order randomizes on every
+           page load.
+      ========================================== -->
+
+      <section class="memories-section section" id="memories">
+        <div class="container">
+          <p class="eyebrow reveal">OUR MEMORIES</p>
+
+          <h2 class="reveal">A Year in Moments</h2>
+
+          <p class="section-description reveal" style="--d: 0.15s">
+            Not every memory needs a date. Some moments are special
+            simply because they happened with you.
+          </p>
+
+          <div class="gallery" id="gallery">
+            <div class="photo reveal">
+              <img
+                src="image/10.jpg"
+                alt="A memory from our first year"
+                loading="lazy"
+                onerror="this.closest('.photo').classList.add('photo-missing')"
+              />
+            </div>
+
+            <div class="photo reveal">
+              <img
+                src="image/16.jpg"
+                alt="A memory from our first year"
+                loading="lazy"
+                onerror="this.closest('.photo').classList.add('photo-missing')"
+              />
+            </div>
+
+            <div class="photo reveal">
+              <img
+                src="image/5.jpg"
+                alt="A memory from our first year"
+                loading="lazy"
+                onerror="this.closest('.photo').classList.add('photo-missing')"
+              />
+            </div>
+
+            <div class="photo reveal">
+              <img
+                src="image/9.jpg"
+                alt="A memory from our first year"
+                loading="lazy"
+                onerror="this.closest('.photo').classList.add('photo-missing')"
+              />
+            </div>
+
+            <div class="photo reveal">
+              <img
+                src="image/14.jpg"
+                alt="A memory from our first year"
+                loading="lazy"
+                onerror="this.closest('.photo').classList.add('photo-missing')"
+              />
+            </div>
+          </div>
+
+          <div class="closing-lines reveal">
+            <p style="--d: 0.2s">Every picture holds a moment.</p>
+            <p style="--d: 0.7s">Every moment holds a memory.</p>
+            <p class="closing-lines-final" style="--d: 1.2s">
+              And every memory has you in it, Love. ❤️
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== LETTER FOR LOVE ========== -->
+      <!-- =========================================
+           EDITABLE ANNIVERSARY CONTENT — LETTER
+           Replace the letter text below with your
+           own message.
+      ========================================== -->
+
+      <section class="letter-section section" id="letter">
+        <div class="container">
+          <p class="eyebrow reveal">LETTER FOR YOU</p>
+
+          <div class="letter" id="letterCard">
+            <div class="letter-top">♥</div>
+
+            <h2 class="reveal-line" style="--d: 0.1s">
+              For My Universe <span>❤️</span>
+            </h2>
+
+            <p class="reveal-line" style="--d: 0.5s">Love,</p>
+
+            <p class="reveal-line" style="--d: 1s">
+              One year ago, everything started with a simple message.
+            </p>
+
+            <p class="reveal-line" style="--d: 1.5s">
+              I never knew that one little conversation would lead me to
+              someone who would become such an important part of my life.
+            </p>
+
+            <p class="reveal-line" style="--d: 2.1s">
+              Thank you for every laugh, every memory, every little
+              moment, and even the difficult days that helped us grow.
+            </p>
+
+            <p class="reveal-line" style="--d: 2.7s">
+              I may not have a picture for every day, but I'll always
+              have the memories we made together.
+            </p>
+
+            <p class="reveal-line" style="--d: 3.3s">
+              After one year, I still choose you.
+            </p>
+
+            <p class="reveal-line" style="--d: 3.9s">
+              And if I could go back to where it all began, I'd still
+              send that message.
+            </p>
+
+            <p class="reveal-line" style="--d: 4.5s">
+              Happy 1st Anniversary, Love. ❤️
+            </p>
+
+            <p class="reveal-line" style="--d: 5s">I love you.</p>
+
+            <p class="signature reveal-line" style="--d: 5.5s">
+              Always yours,<br />
+              <strong>Steven</strong> ♥
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== REASONS WHY I LOVE YOU ========== -->
+      <!-- EDIT: Your reasons are in script.js -->
+
+      <section class="reasons-section section" id="reasons">
+        <div class="container">
+          <p class="eyebrow reveal">JUST BECAUSE</p>
+
+          <h2 class="reveal">
+            Reasons why
+            <br />
+            I love you.
+          </h2>
+
+          <div class="reason-box reveal">
+            <div class="reason-number">
+              <span id="reasonNumber">01</span>
+              <small>/ 10</small>
+            </div>
+
+            <p id="reasonText">
+              I love the way you make ordinary days feel a little more
+              special.
+            </p>
+
+            <button class="reveal-button" id="reasonButton">
+              Give me another reason
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== FINAL SURPRISE ========== -->
+      <!-- =========================================
+           EDITABLE ANNIVERSARY CONTENT — FINALE
+           Edit the date, message and photo below.
+      ========================================== -->
+
+      <section class="final-section section" id="final">
+        <div class="final-content">
+          <p class="eyebrow reveal">OCTOBER 8, 2026</p>
+
+          <h2 class="reveal" style="--d: 0.15s">
+            Happy 1st Anniversary, Love ❤️
+          </h2>
+
+          <div class="milestone" id="milestone">
+            <p class="milestone-line" style="--d: 0.2s">One year.</p>
+            <p class="milestone-line" style="--d: 0.8s">365 days.</p>
+            <p class="milestone-line" style="--d: 1.4s">
+              Countless memories.
+            </p>
+            <p class="milestone-line" style="--d: 2s">
+              And still choosing you.
+            </p>
+          </div>
+
+          <!-- EDIT: Replace image/5.jpg with your favorite photo -->
+          <figure class="final-photo reveal" style="--d: 2.6s">
+            <img
+              src="image/11.jpg"
+              alt="Our favorite photo together"
+              loading="lazy"
+              onerror="
+                this.closest('.final-photo').classList.add('photo-missing')
+              "
+            />
+          </figure>
+
+          <div class="final-lines">
+            <p class="reveal" style="--d: 3.2s">
+              From one simple message to a whole year of memories...
+            </p>
+            <p class="reveal" style="--d: 3.6s">
+              Thank you for becoming my favorite part of the story.
+            </p>
+            <p class="reveal" style="--d: 4s">
+              Happy 1st Anniversary, Love. ❤️
+            </p>
+            <p class="reveal" style="--d: 4.4s">I love you.</p>
+          </div>
+
+          <button
+            class="main-button reveal"
+            id="replayButton"
+            style="--d: 4.8s"
+          >
+            Replay Our Story <span>❤️</span>
+          </button>
+
+          <div class="final-signature reveal" style="--d: 5.2s">
+            Steven <span>♥</span> Marga
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+
+      <footer>
+        Made with love by Steven
+        <span>♥</span>
+        for my Love
+      </footer>
+    </main>
+
+    <!-- =========================
+         LIGHTBOX
+    ========================== -->
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+        ×
+      </button>
+
+      <button
+        class="lightbox-nav lightbox-prev"
+        id="lightboxPrev"
+        aria-label="Previous photo"
+      >
+        ‹
+      </button>
+
+      <div class="lightbox-stage">
+        <img id="lightboxImg" alt="" />
+      </div>
+
+      <button
+        class="lightbox-nav lightbox-next"
+        id="lightboxNext"
+        aria-label="Next photo"
+      >
+        ›
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
